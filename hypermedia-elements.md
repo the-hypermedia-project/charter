@@ -79,12 +79,14 @@ There are several specs that allow for [link hints](http://tools.ietf.org/html/d
 
 ### Unsafe Transitions
 
-An unsafe transition is any transition that causes a resource change. These transitions should be considered mutable. An unsafe transition has the following:
+An unsafe transition is any transition that causes a resource change. These transitions should be considered mutable. Some media types may refer to these types of transitions as `actions`.
+
+An unsafe transition has the following:
 
 1. **Method** - this MUST be unsafe HTTP method for the transition, which include POST, PATCH, PUT, and DELETE
 2. **Request Types** - Media types in which the server can accept
 
-Actions MAY also included embedded meta data, though an action MUST NOT include embedded attributes or transitions.
+Unsafe transitions MAY also included embedded meta data, though an unsafe transition MUST NOT include embedded attributes or transitions.
 
 It also provides a way for defining attributes, which some media types call body parameters or fields. These attributes include:
 
