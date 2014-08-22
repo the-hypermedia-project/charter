@@ -45,7 +45,7 @@ A transition MUST have a relation type, which defines how the transition relates
 5. **Embed As** - Define how to transclude a resource
 6. **Language** - Define the language of the transition
 
-### Link Transition
+### Link Transitions
 
 Links are a common category of transitions that are considered safe transitions.
 
