@@ -89,7 +89,9 @@ It also provides a way for defining attributes, which some media types call body
 
 ### Link and Action Templates
 
-Instead of using a normal URI, link and action templates use a URI template  based on [RFC 6570](http://tools.ietf.org/html/rfc6570). While formats like HAL combine links and link templates, it is helpful to keep these conceptually different. 
+Instead of using a normal URI, link and action templates use a URI template  based on [RFC 6570](http://tools.ietf.org/html/rfc6570). While formats like HAL combine links and link templates, it is helpful to keep these conceptually different because of this statement of from the RFC.
+
+> URI Templates are not URIs: they do not identify an abstract or physical resource, they are not parsed as URIs, and they should not be used in places where a URI would be expected unless the template expressions will be expanded by a template processor prior to use.
 
 The parameters for the URI template use the following:
 
