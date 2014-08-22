@@ -32,9 +32,9 @@ In essence, a transition is an available progression from one state to another s
 
 These different types of transitions can be broken down into [Aspects](http://www.slideshare.net/rnewton/amundsen-costbenefitshypermedia/80) and [H-Factors](http://amundsen.com/hypermedia/hfactor/).  This document will primarily look at three different kinds of transitions:
 
-1. Link Transitions
-2. Action Transitions
-3. Link and Action Templates
+1. Safe Transitions
+2. Unsafe Transitions
+3. Templated Transitions
 
 A transition MUST have a relation type, which defines how the transition relates to current state. A transition MAY also have the following.
 
@@ -45,9 +45,9 @@ A transition MUST have a relation type, which defines how the transition relates
 5. **Embed As** - Define how to transclude a resource
 6. **Language** - Define the language of the transition
 
-### Link Transitions
+### Safe Transitions
 
-Links are a common category of transitions that are considered safe transitions.
+Safe transitions do not cause a change, and the resource transition is considered immutable.
 
 #### Links
 
@@ -77,11 +77,9 @@ Because of this, an embedded link MAY include meta items, resource attributes, a
 
 There are several specs that allow for [link hints](http://tools.ietf.org/html/draft-nottingham-link-hint-00), which allows for providing information about the HTTP methods can be invoked on a URI. While this is providing a way to embed available actions, it does so by merely providing the HTTP methods, and does not provide a name for the relation types.
 
-### Action Transitions
+### Unsafe Transitions
 
-An action is a type of transition that SHOULD be considered unsafe. 
-
-An action has the following:
+An unsafe transition is any transition that causes a resource change. These transitions should be considered mutable. An unsafe transition has the following:
 
 1. **Method** - this MUST be unsafe HTTP method for the transition, which include POST, PATCH, PUT, and DELETE
 2. **Request Types** - Media types in which the server can accept
@@ -94,9 +92,9 @@ It also provides a way for defining attributes, which some media types call body
 2. **Value** - The value of the parameter
 3. **Default Value** - The default value of the parameter
 
-### Link and Action Templates
+### Templated Transitions
 
-Instead of using a normal URI, link and action templates use a URI template  based on [RFC 6570](http://tools.ietf.org/html/rfc6570). While formats like HAL combine links and link templates, it is helpful to keep these conceptually different because of this statement of from the RFC.
+Instead of using a normal URI for safe or unsafe transitions, templates use a URI template  based on [RFC 6570](http://tools.ietf.org/html/rfc6570). While formats like HAL combine links and link templates, it is helpful to keep these conceptually different because of this statement of from the RFC.
 
 > URI Templates are not URIs: they do not identify an abstract or physical resource, they are not parsed as URIs, and they should not be used in places where a URI would be expected unless the template expressions will be expanded by a template processor prior to use.
 
