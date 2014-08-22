@@ -82,6 +82,8 @@ An action has the following:
 1. **Method** - this MUST be unsafe HTTP method for the transition, which include POST, PATCH, PUT, and DELETE
 2. **Request Types** - Media types in which the server can accept
 
+Actions MAY also included embedded meta data, though an action MUST NOT include embedded attributes or transitions.
+
 It also provides a way for defining attributes, which some media types call body parameters or fields. These attributes include:
 
 1. **Name** - The name of the parameter
