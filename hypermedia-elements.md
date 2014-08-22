@@ -53,7 +53,7 @@ A query is a safe link that has parameters that can be added as query string for
 
 #### Embedded Resources
 
-Many media types provide ways to embed data for linked resources. Some profiles or formats may consider some of this to be link hints
+Many media types provide ways to embed data for linked resources. Some profiles or formats may consider some of this to fall under link hints.
 
 ##### Embedded Meta Data, Attributes, and Transitions
 
@@ -73,7 +73,7 @@ An action has the following:
 
 1. **Relation Type** - Relation type or name of the transition
 2. **URI** - URI of the action
-3. **Method** - this MUST be unsafe HTTP method for the transition, which include POST, PUT, and DELETE
+3. **Method** - this MUST be unsafe HTTP method for the transition, which include POST, PATCH, PUT, and DELETE
 
 It also provides a way for defining attributes, which some media types call body parameters or fields. These attributes include:
 
