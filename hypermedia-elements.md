@@ -83,7 +83,7 @@ An unsafe transition is any transition that causes a resource change. These tran
 
 An unsafe transition has the following:
 
-1. **Method** - this MUST be unsafe HTTP method for the transition, which include POST, PATCH, PUT, and DELETE
+1. **Method** - this MUST an be unsafe HTTP method for the transition, which include POST, PATCH, PUT, and DELETE
 2. **Request Types** - Media types in which the server can accept
 
 Unsafe transitions MAY also included embedded meta data, though an unsafe transition MUST NOT include embedded attributes or transitions.
