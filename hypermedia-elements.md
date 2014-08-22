@@ -43,6 +43,7 @@ A transition MUST have a relation type, which defines how the transition relates
 3. **Type** - Adding semantic information about the transition
 4. **Embed?** - Define whether or not the resource should be transcluded
 5. **Embed As** - Define how to transclude a resource
+6. **Language** - Define the language of the transition
 
 ### Links
 
