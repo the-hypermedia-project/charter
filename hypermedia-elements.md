@@ -32,8 +32,8 @@ In essence, a transition is an available progression from one state to another s
 
 These different types of transitions can be broken down into [Aspects](http://www.slideshare.net/rnewton/amundsen-costbenefitshypermedia/80) and [H-Factors](http://amundsen.com/hypermedia/hfactor/).  This document will primarily look at three different kinds of transitions:
 
-1. Links
-2. Actions
+1. Link Transitions
+2. Action Transitions
 3. Link and Action Templates
 
 A transition MUST have a relation type, which defines how the transition relates to current state. A transition MAY also have the following.
@@ -45,9 +45,13 @@ A transition MUST have a relation type, which defines how the transition relates
 5. **Embed As** - Define how to transclude a resource
 6. **Language** - Define the language of the transition
 
-### Links
+### Link Transition
 
-Links are a common category of transitions that are considered safe transitions. At minimum, a link MUST have a URI for the resource.
+Links are a common category of transitions that are considered safe transitions.
+
+#### Links
+
+A link is the simplest form of a link transition. It MUST have a URI for the resource.
 
 #### Queries
 
@@ -73,7 +77,7 @@ Because of this, an embedded link MAY include meta items, resource attributes, a
 
 There are several specs that allow for [link hints](http://tools.ietf.org/html/draft-nottingham-link-hint-00), which allows for providing information about the HTTP methods can be invoked on a URI. While this is providing a way to embed available actions, it does so by merely providing the HTTP methods, and does not provide a name for the relation types.
 
-### Actions
+### Action Transitions
 
 An action is a type of transition that SHOULD be considered unsafe. 
 
