@@ -36,12 +36,17 @@ These different types of transitions can be broken down into [Aspects](http://ww
 2. Actions
 3. Link and Action Templates
 
+A transition MUST have a relation type, which defines how the transition relates to current state. A transition MAY also have the following.
+
+1. **Response Types** - What media types the transition can respond with
+2. **Label** - Human-readable label for the transition
+3. **Type** - Adding semantic information about the transition
+4. **Embed?** - Define whether or not the resource should be transcluded
+5. **Embed As** - Define how to transclude a resource
+
 ### Links
 
-Links are a common category of transitions that are considered safe transitions. At minimum, a link has the following.
-
-1. **Relation Type** - Relation type or name of the transition
-2. **URI** - URI of the link
+Links are a common category of transitions that are considered safe transitions. At minimum, a link MUST have a URI for the resource.
 
 #### Queries
 
@@ -61,6 +66,8 @@ Some media types provide ways to embed meta data about the linked resource. This
 
 Many media types also provide ways for embedding attributes and transitions available for the linked resource. An embedded resource MAY be considered to be partially embedded or fully embedded. If fully embedded, it  MUST include all of the data that would be available if the URI had been requested.
 
+Because of this, an embedded link MAY include meta items, resource attributes, and transition items.
+
 ##### Anonymous Links and Actions
 
 There are several specs that allow for [link hints](http://tools.ietf.org/html/draft-nottingham-link-hint-00), which allows for providing information about the HTTP methods can be invoked on a URI. While this is providing a way to embed available actions, it does so by merely providing the HTTP methods, and does not provide a name for the relation types.
@@ -71,9 +78,8 @@ An action is a type of transition that SHOULD be considered unsafe.
 
 An action has the following:
 
-1. **Relation Type** - Relation type or name of the transition
-2. **URI** - URI of the action
-3. **Method** - this MUST be unsafe HTTP method for the transition, which include POST, PATCH, PUT, and DELETE
+1. **Method** - this MUST be unsafe HTTP method for the transition, which include POST, PATCH, PUT, and DELETE
+2. **Request Types** - Media types in which the server can accept
 
 It also provides a way for defining attributes, which some media types call body parameters or fields. These attributes include:
 
@@ -99,7 +105,10 @@ Hypermedia types provide ways to include meta data for both the current resource
 
 ### Attributes
 
-Meta attributes includes data about the resource or linked resource. 
+Meta attributes includes data about the resource or linked resource. Meta attributes may include data like:
+
+1. The `title` of the resource
+2. A `description` of the resource
 
 ### Links
 
