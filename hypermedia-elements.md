@@ -55,11 +55,7 @@ A link is the simplest form of a link transition. It MUST have a URI for the res
 
 #### Queries
 
-A query is a safe link that has parameters that can be added as query string for the URI. These parameters include:
-
-1. **Name** - The name of the parameter
-2. **Value** - The value of the parameter
-3. **Default Value** - The default value of the parameter
+A query is a safe link that has parameters that can be added as query string for the URI. These parameters will be [Inputs](#inputs).
 
 #### Embedded Resources
 
@@ -88,11 +84,7 @@ An unsafe transition has the following:
 
 Unsafe transitions MAY also included embedded meta data, though an unsafe transition MUST NOT include embedded attributes or transitions.
 
-It also provides a way for defining attributes, which some media types call body parameters or fields. These attributes include:
-
-1. **Name** - The name of the parameter
-2. **Value** - The value of the parameter
-3. **Default Value** - The default value of the parameter
+It also provides a way for defining attributes, which some media types call body parameters or fields. These attributes MUST be [Inputs](#inputs).
 
 ### Templated Transitions
 
@@ -100,13 +92,7 @@ Instead of using a normal URI for safe or unsafe transitions, templates use a UR
 
 > URI Templates are not URIs: they do not identify an abstract or physical resource, they are not parsed as URIs, and they should not be used in places where a URI would be expected unless the template expressions will be expanded by a template processor prior to use.
 
-The parameters for the URI template use the following:
-
-1. **Name** - The name of the parameter
-2. **Value** - The value of the parameter
-3. **Default Value** - The default value of the parameter
-
-Parameters that are part of the URI path MUST be required.
+The parameters for the URI template MUST be [Inputs](#inputs). Parameters that are part of the URI path MUST be required.
 
 ## Meta
 
@@ -123,9 +109,24 @@ Meta attributes includes data about the resource or linked resource. Meta attrib
 
 Meta links are links that provide relevant resources for processing the returned resource. This may include profile links, help links, or even links to styling documents.
 
-## Curies
+### Curies
 
-Curies are ways to shorten URLs based on the [W3 spec](http://www.w3.org/TR/curie/). It includes a shortened name for the curie along with a URI prefix.
+Curies are ways to shorten URLs based on the [W3 spec](http://www.w3.org/TR/curie/). It MUST include a shortened name for the curie along with a URI prefix. In some contexts, this is referred to as a prefix.
+
+## Inputs
+
+An input can be used in various contexts to provide information on how data can be provided for queries, URI templates, and forms. They primarily have the following attributes:
+
+1. **Name** - The name of the parameter
+2. **Value** - The value of the parameter
+
+There are also various other attributes that can be found in formats such as HTML and Siren.
+
+1. **Options** - Similar to an HTML `select` tag, this allows for providing options for the input. An option will have a name and a value.
+2. **Current Value** - This allows for setting the current value of the input
+3. **Placeholder** - Define a placeholder for the input to give hints on the format of the data.
+4. **Type** - Allows to specify a type for an input, similar to how HTML has a type.
+5. **Default Value** - The default value of the parameter, useful for giving a suggestion for the inputs value.
 
 ## Errors
 
