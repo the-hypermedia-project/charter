@@ -47,11 +47,11 @@ A transition MUST have a relation type, which defines how the transition relates
 
 ### Safe Transitions
 
-Safe transitions do not cause a change, and the resource transition is considered immutable.
+Safe transitions do not cause a change, and the resource transition is considered immutable. All safe transitions MUST have a URI.
 
 #### Links
 
-A link is the simplest form of a link transition. It MUST have a URI for the resource.
+A link is the simplest form of a safe transition. In its simplest form, it is simply a link relation and a URI. It MAY contain embedded data, as outlined in [Embedded Resources](#embedded-resources).
 
 #### Queries
 
@@ -75,7 +75,7 @@ There are several specs that allow for [link hints](http://tools.ietf.org/html/d
 
 ### Unsafe Transitions
 
-An unsafe transition is any transition that causes a resource change. These transitions should be considered mutable. Some media types may refer to these types of transitions as `actions`.
+An unsafe transition is any transition that causes a resource change. These transitions should be considered mutable. Some media types may refer to these types of transitions as `actions`. An unsafe transition MUST have a URI.
 
 An unsafe transition has the following:
 
@@ -92,7 +92,7 @@ Instead of using a normal URI for safe or unsafe transitions, templates use a UR
 
 > URI Templates are not URIs: they do not identify an abstract or physical resource, they are not parsed as URIs, and they should not be used in places where a URI would be expected unless the template expressions will be expanded by a template processor prior to use.
 
-The parameters for the URI template MUST be [Inputs](#inputs). Parameters that are part of the URI path MUST be required.
+A templated transition MUST have a URI template attribute. The parameters for the URI template MUST be [Inputs](#inputs). Parameters that are part of the URI path MUST be required.
 
 ## Meta
 
@@ -127,7 +127,3 @@ There are also various other attributes that MAY be used. These occur in various
 3. **Placeholder** - Define a placeholder for the input to give hints on the format of the data.
 4. **Type** - Allows to specify a type for an input, similar to how HTML has a type for the `input` tags.
 5. **Default Value** - The default value of the parameter, useful for giving a suggestion for the inputs value.
-
-## Errors
-
-TBD
