@@ -115,17 +115,17 @@ Curies are ways to shorten URLs based on the [W3 spec](http://www.w3.org/TR/curi
 
 ## Inputs
 
-An input can be used in various contexts to provide information on how data can be provided for queries, URI templates, and forms. They primarily have the following attributes:
+An input can be used in various contexts to provide information on how data can be provided for queries, URI templates, and forms. An input MUST have the following attributes:
 
 1. **Name** - The name of the parameter
 2. **Value** - The value of the parameter
 
-There are also various other attributes that can be found in formats such as HTML and Siren.
+There are also various other attributes that MAY be used. These occur in various formats such as Siren or HTML.
 
 1. **Options** - Similar to an HTML `select` tag, this allows for providing options for the input. An option will have a name and a value.
 2. **Current Value** - This allows for setting the current value of the input
 3. **Placeholder** - Define a placeholder for the input to give hints on the format of the data.
-4. **Type** - Allows to specify a type for an input, similar to how HTML has a type.
+4. **Type** - Allows to specify a type for an input, similar to how HTML has a type for the `input` tags.
 5. **Default Value** - The default value of the parameter, useful for giving a suggestion for the inputs value.
 
 ## Errors
