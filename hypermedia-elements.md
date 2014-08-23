@@ -1,6 +1,6 @@
 # Elements of a Hypermedia Message
 
-The purpose of this document is to outline the elements of a hypermedia message for use in designing an general interface for accessing hypermedia resources.
+The purpose of this document is to outline the elements of a hypermedia message for use in designing a general interface for accessing hypermedia resources.
 
 The elements found in this document are derived from the most common hypermedia formats in use today.
 
