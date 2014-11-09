@@ -1,5 +1,5 @@
 # Representor
-TBD.
+The overall design of a representor is evolving
 
 ## Transition
 

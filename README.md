@@ -1,120 +1,88 @@
 # The Hypermedia Project
-Making the generation and consumption of Hypermedia messages for multiple media types in multiple
-programming languages accessible to the masses.
+Making the generation and consumption of Hypermedia messages for multiple media types in multiple programming languages
+accessible to the masses.
 
-## Genesis
-During a number of sessions during the [2014 API-Craft Conference][], it became apparent that a group of
-like-minded developers were grappling with similar design patterns and architectures in the Hypermedia
-tooling they were creating. A conversation ensued discussing these similarities centered around a brain-dead
-simple, state-machine interface for introspecting, interacting with and generating diverse Hypermedia messages:
+Checkout the [genesis][] of the project if you are interested.
 
-![whiteboard sketch](assets/whiteboard.png?raw=true) ![representors diagram](assets/representors.png?raw=true)
+## Hypermedia Libraries
+Libraries in the following languages are currently planned:
 
-Given that each were working in different programming languages, it was proposed to join together to
-refine a common architecture and interface and then implement developer-friendly tooling in their respective
-languages.
+- representor-dotnet-csharp - Planned. Contributors Welcome.
+- representor-java - Planned. Contributors welcome.
+- representor-js - Planned. Contributors welcome.
+- [representor-py](http://the-hypermedia-project/representor-py) - WIP
+- [representor-ruby](http://the-hypermedia-project/representor-ruby) - WIP
+- [representor-swift](http://the-hypermedia-project/representor-swift) - WIP
 
-The Hypermedia Project was formed to leverage each others expertise to develop tooling for our own
-cross-platform Hypermedia applications and to help lower the barrier to entry for interested developers
-to explore and create their own Hypermedia APIs in simple, yet powerful ways.
+## Representor Pattern
+Hypermedia is about self-describing, runtime messages that _represent_ a _resource_ in a client-server system.
+These messages are not the resource itself. Rather, they are a local expression of some underlying data and the
+possible state transitions associated with that data, as defined by the related remote _resource_.
 
-## Architecture and Design
+Practically, a _resource_ can be described as a recursive Finite State Machine (FSM). It may contain data, application
+and resource state transitions available based on the current state of the data (and possibly the context of a request 
+for the resource) and possibly other recursively embedded resources (finite state machines).
+
+Formally, the representation of a resource is tied to a particular media type that has a strictly specified way of
+describing a resource in a message. Servers must generate messages in the format of these media types and programmatic
+clients must be written to understand these media types. But, irrespective of the media type, the definition of a
+resource exists completely independent of its possible representations.
+
+The _Representor Pattern_ is based on this idea that a canonical resource exists, independent of media type and
+domain data models. By programmatically building a _Representor_ instance associated with a resource,
+generating hypermedia messages server-side or consuming them client-side can be significantly simplified.
+
+![Representor Pattern Diagram](assets/representor_pattern_diagram.png?raw=true)
+
+The heart of _The Hypermedia Project_ is developing a suite of libraries in different languages that provide
+tooling for implmenting the _Representor Pattern_. For details on how this pattern can be applied to full-stack
+development of Hypermedia applications, checkout the [Components][] discussion.
+
+### Server-side Representor
+On the server, a _Representor_ abstracts the underlying data model implementation so that the definition of a resource
+is completely decoupled from the details of how data is persisted or organized in models. A server need only, based on
+the context of a client request, build a _Representor_ instance associated with the resource and it's current state. It
+does this through a simple state-machine related builder interface that adds attributes, optional meta data,
+transitions, and possibly embedded resources.
+
+Since the _Representor_ knows how to render itself as a Hypermedia message in different media types, the server can
+simply request a representation from the _Representor_ based on a media type negotiated by a client and return it.
+Because of this, service developers can focus on the domain of their application, the definition of resources and the
+state-machine interface of their API vs. the details of generating Hypermedia messages.
+
+### Client-side Representor
+On the client, a _Representor_ abstracts away the underlying protocol and media-type the message was transported by. The
+simple state machine interface of the _Representor_ allows client applications to appropriately introspect and interact
+with a Hypermedia message.
+
+One of the reasons for the generic state-machine interface is that client applications should not interact with a
+_Representor_ as if they are interacting with some remote object. Rather, they should write client code that
+"assumes nothing" and checks what is in the message received and respond accordingly. This subtle, but significant,
+difference is at the heart of the loose coupling and evolvability associated with Hypermedia APIs.
+
+That being said, a client application could interact with a _Representor_ instance of a message directly, or it could
+define an optional "Semantic Presentor" that translates the message into a loosely-coupled local interface that can be
+used to present information in a UI based on mapping the elements that it "semantically" understands. Alternately, an
+optional "Semantic Model" could be developed as a loosely-coupled local model for interacting with the message.
+
+The primary point is that how a client application decides to interact with a particular resource is not associated with
+some remote data/object model that is tunneled across the wire, but rather is decided by locally the client for its own
+convenience keeping it de-coupled and free to evolve on its own terms as an underlying Hypermedia API evolves.
+
+## Project Architecture and Design
 Architecture is about constraints that produce a desired result. Project Members have agreed to develop a common
 set of constraints and designs to guide implementation of tooling in their respective languages in order to:
 
 1. Maintain commonality of ideas for developers learning and using these tools.
 2. Facilitate open-source participation in developing the various language-specific libraries.
 3. Avoid RPC, OOP and/or Remote Type Marshalling anti-patterns.
-4. Abstract the complexity of media types and protocols when interacting with Hypermedia APIs to focus on the tasks the
-APIs support.
+4. Abstract the complexity of media types and protocols when interacting with Hypermedia APIs to focus on the
+functionality the APIs support.
 
 As such, The Hypermedia Project is about a non-exclusive, opinionated approach to Hypermedia tooling. That is, we are
-working on Hypermedia tools in an agreed upon fashion without making any universal value statement as to how others MAY or
-SHOULD ([RFC2119][]) develop tooling of their own.
+working on Hypermedia tools in an agreed upon fashion without making any universal value statement as to how others MAY
+or SHOULD ([RFC2119][]) develop tooling of their own.
 
-## Components
-The following sections provide conceptual overviews of various components and links to their evolving design documents.
-
-### Representors
-[Representor][] instances will provide a simple state-machine interface for interacting with hypermedia
-messages in a consistent fashion.
-
-Because these objects are designed to be a canonical representation of remote Hypermedia resources, they are effectively
-a "rosetta stone" of Hypermedia. That is, different media types may be mapped to and from the structure for use in
-consuming and generating Hypermedia messages in multiple formats.
-
-The Representor interface includes:
-
-1. Miscellaneous metadata about the message.
-2. The set of Transition objects available at runtime in the message.
-3. Data attributes of the message.
-4. Nested representors in the message associated with embedded resource representations.
-
-#### Transitions
-[Transition][] instances encapsulate information about interacting with links and forms (or their equivalents in a
-particular generic hypermedia type) in a Hypermedia message. For media types that support embedding protocol specific
-information in the message, Transition instances will abstract protocol specifics and allow interacting with the
-state-machine transition in a protocol and media type independent fashion.
-
-The Transition interface includes:
-
-1. Miscellaneous metadata about the transition including protocol details.
-2. The URI of the transition.
-3. Parameters associated with a URI template, if any, including any validators on the values.
-4. Attributes associated with request bodies, if any, including any validators on the values.
-
-#### Representor Builder
-Internally, Representors will have a robust structure to accommodate mapping diverse Hypermedia media types. In order
-to not pollute the interface of Representor instances with this structure, a builder pattern will be scoped that allows
-construction of diverse messages via a [RepresentorBuilder][] class.
-
-The interface includes:
-
-1. Methods to add metadata.
-2. Methods to build and add transitions.
-3. Methods to add attributes.
-4. Methods to nest Representors.
-
-#### Serialization
-Using simple factory patterns and writing serializer/deserializer pairs for different media types will allow both
-translating server-side data into hypermedia representations and server responses into client-side Representor
-instances.
-
-Server-side, a representation can be constructed using the RepresentorBuilder from combinations of data from models,
-etc. By then using a serialization factory, the constructed representation can injected into a serializer for a
-particular media type. Using the specification of the associated media type and iterating over the Representor
-state-machine interface, a particular media type response can be rendered.
-
-Client-side, a hypermedia agent can use a deserializer factory to convert a server response to a Representor instance.
-In this case, a deserializer would use the media type specification and the RepresentorBuilder to construct and return
-a Representor instance.
-
-### Hypermedia Agents
-With the aforementioned functionality, the elusive general-purpose Hypermedia client becomes a trivial Representor
-wrapper that is able to invoke transitions for implemented protocols.
-
-### Hypermedia Testing Support
-By using the Representor interface and various serialization factories, the complexities of testing different
-Hypermedia APIs can be abstracted into general purpose step definitions that re-enforce properly consuming Hypermedia
-APIs.
-
-### Hypermedia Server-side Generators
-In the simplest case, services can code the translation of data into a Representor using the builder and then easily
-render it as a response for a particular media type. In more advanced cases, server-side frameworks can also be
-implemented in like fashion that allow generic mapping of data into hypermedia responses.
-
-## Roadmap
-The following outlines the initial priorities for the project:
-
-1. Isolate the common elements of generic Hypermedia media types to from the internal structure of
-Representors.
-2. Implement state-machine interface and builder pattern for Representors.
-3. Implement serializer/deserializer factories for diverse media types.
-4. Implement simple Hypermedia agents.
-5. Implement testing support.
-
-[2014 API-Craft Conference]: http://api.api-craft.org/conferences/detroit2014
 [RFC2119]: https://www.ietf.org/rfc/rfc2119
-[Representor]: design/representor.md
-[Transition]: design/representor.md#transition
-[RepresentorBuilder]:  design/representor.md#builder
+[genesis]: reference/genesis.md
+[Components]: reference/components.md
