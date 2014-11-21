@@ -1,4 +1,4 @@
-# Elements of Hypermedia Media Types
+# Elements of Hypermedia Message
 
 The purpose of this document is to outline the common building blocks of hypermedia media types for use in designing a canonical hypermedial message.
 
@@ -73,7 +73,7 @@ Because of this, an embedded link MAY include meta items, resource attributes, a
 
 ##### Anonymous Links and Actions
 
-There are several specs that allow for [link hints](http://tools.ietf.org/html/draft-nottingham-link-hint-00), which allows for providing information about the HTTP methods can be invoked on a URI. While this is providing a way to embed available actions, it does so by merely providing the HTTP methods, and does not provide a name for the relation types.
+There are several specs such as [link hints](http://tools.ietf.org/html/draft-nottingham-link-hint-00) which allow for providing information about the methods that can be invoked on a URI. While this is providing a way to embed available actions, it does so by merely providing the protocol-specific methods, and does not provide a name for the relation types. Because of the lack of name, these types of transitions are referred to as anonymous.
 
 ### Unsafe Transitions
 
@@ -81,7 +81,7 @@ An unsafe transition is any transition that causes a resource change. These tran
 
 An unsafe transition has the following:
 
-1. **Method** - this MUST an be unsafe HTTP method for the transition, which include POST, PATCH, PUT, and DELETE
+1. **Method** - this is the unsafe method or action being taken on a specific resource. Some media types use protocol-specific methods (e.g. GET or POST), or use more generic semantics (e.g. read or create) that map to protocol-specific methods.
 1. **Request Types** - Media types in which the server can accept
 
 Unsafe transitions MAY also included embedded meta data, though an unsafe transition MUST NOT include embedded attributes or transitions.
@@ -96,11 +96,11 @@ Instead of using a normal URI for safe or unsafe transitions, templates use a UR
 
 A templated transition MUST have a URI template attribute. The parameters for the URI template MUST be [Inputs](#inputs). Parameters that are part of the URI path MUST be required.
 
-Templated transitions MAY be safe [links](#links) or [unsafe transitions](#unsafe-transitions), but SHOULD NOT be [queries](#queries) because the query parameters can be provide in the URI template.
+Templated transitions MAY be [safe](#unsafe-transitions) or [unsafe](#unsafe-transitions) transitions once expanded depending on the context of the templates. In their unexpanded form, they SHOULD NOT be considered resolvable URIs.
 
 ## Meta
 
-Hypermedia types provide ways to include meta data for both the current resource and linked resources. 
+Hypermedia types provide ways to include meta data for both the current resource and linked resources.
 
 ### Attributes
 
