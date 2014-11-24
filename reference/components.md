@@ -78,9 +78,9 @@ Representors.
 2. Implement state-machine interface and builder pattern for Representors.
 3. Implement serializer/deserializer factories for diverse media types.
 4. Implement simple Hypermedia agents.
-5. Implement testing <support class=""></support>
+5. Implement testing support.
 
-[Representor Pattern]: ../representor-pattern
-[Representor]: design/representor.md
-[Transition]: design/representor.md#transition
-[RepresentorBuilder]:  design/representor.md#builder
+[Representor Pattern]: ../README.md#representor-pattern
+[Representor]: ../design/representor.md
+[Transition]: ../design/representor.md#transition
+[RepresentorBuilder]:  ../design/representor.md#builder
