@@ -33,7 +33,7 @@ The Transition interface includes:
 ### Representor Builder
 Internally, Representors will have a robust structure to accommodate mapping diverse Hypermedia media types. In order
 to not pollute the interface of Representor instances with this structure, a builder pattern will be scoped that allows
-construction of diverse messages via a [RepresentorBuilder][] class.
+construction of diverse messages via a [Representor Builder][] class.
 
 The interface includes:
 
@@ -47,7 +47,7 @@ Using simple factory patterns and writing serializer/deserializer pairs for diff
 translating server-side data into hypermedia representations and server responses into client-side Representor
 instances.
 
-Server-side, a representation can be constructed using the RepresentorBuilder from combinations of data from models,
+Server-side, a representation can be constructed using the Representor Builder from combinations of data from models,
 etc. By then using a serialization factory, the constructed representation can injected into a serializer for a
 particular media type. Using the specification of the associated media type and iterating over the Representor
 state-machine interface, a particular media type response can be rendered.

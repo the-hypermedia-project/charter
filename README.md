@@ -10,9 +10,9 @@ Libraries in the following languages are currently planned:
 - representor-dotnet-csharp - Planned. Contributors Welcome.
 - representor-java - Planned. Contributors welcome.
 - representor-js - Planned. Contributors welcome.
-- [representor-py](http://the-hypermedia-project/representor-py) - WIP
-- [representor-ruby](http://the-hypermedia-project/representor-ruby) - WIP
-- [representor-swift](http://the-hypermedia-project/representor-swift) - WIP
+- [representor-python](http://github.com/the-hypermedia-project/representor-python) - WIP
+- [representor-ruby](http://github.com/the-hypermedia-project/representor-ruby) - WIP
+- [representor-swift](http://github.com/the-hypermedia-project/representor-swift) - WIP
 
 ## Representor Pattern
 Hypermedia is about self-describing, runtime messages that _represent_ a _resource_ in a client-server system.
@@ -35,7 +35,7 @@ generating hypermedia messages server-side or consuming them client-side can be 
 ![Representor Pattern Diagram](assets/representor_pattern_diagram.png?raw=true)
 
 The heart of _The Hypermedia Project_ is developing a suite of libraries in different languages that provide
-tooling for implmenting the _Representor Pattern_. For details on how this pattern can be applied to full-stack
+tooling for implementing the _Representor Pattern_. For details on how this pattern can be applied to full-stack
 development of Hypermedia applications, checkout the [Components][] discussion.
 
 ### Server-side Representor
@@ -69,7 +69,7 @@ The primary point is that how a client application decides to interact with a pa
 some remote data/object model that is tunneled across the wire, but rather is decided by locally the client for its own
 convenience keeping it de-coupled and free to evolve on its own terms as an underlying Hypermedia API evolves.
 
-## Project Architecture and Design
+## Project Manifesto
 Architecture is about constraints that produce a desired result. Project Members have agreed to develop a common
 set of constraints and designs to guide implementation of tooling in their respective languages in order to:
 
