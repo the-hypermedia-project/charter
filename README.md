@@ -9,6 +9,7 @@ Libraries in the following languages are currently planned:
 
 - representor-dotnet-csharp - Planned. Contributors Welcome.
 - representor-java - Planned. Contributors welcome.
+- representor-scala - Planned. Contributors welcome.
 - representor-js - Planned. Contributors welcome.
 - [representor-python](http://github.com/the-hypermedia-project/representor-python) - WIP
 - [representor-ruby](http://github.com/the-hypermedia-project/representor-ruby) - WIP
