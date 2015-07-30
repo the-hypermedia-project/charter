@@ -7,13 +7,15 @@ Checkout the [genesis][] of the project if you are interested.
 ## Hypermedia Libraries
 Libraries in the following languages are currently planned:
 
-- representor-dotnet-csharp - Planned. Contributors Welcome.
-- representor-java - Planned. Contributors welcome.
-- representor-scala - Planned. Contributors welcome.
-- representor-js - Planned. Contributors welcome.
-- [representor-python](http://github.com/the-hypermedia-project/representor-python) - WIP
-- [representor-ruby](http://github.com/the-hypermedia-project/representor-ruby) - WIP
-- [representor-swift](http://github.com/the-hypermedia-project/representor-swift) - WIP
+| Language | Status |
+|----------|--------|
+| [Swift](http://github.com/the-hypermedia-project/representor-swift) | Implemented |
+| [Python](http://github.com/the-hypermedia-project/representor-python) | WIP |
+| [Ruby](http://github.com/the-hypermedia-project/representor-ruby) | WIP |
+| Java | Planned. Contributors Welcome |
+| JavaScript | Planned. Contributors Welcome |
+| .net C# | Planned. Contributors Welcome |
+| Scala | Planned. Contributors Welcome |
 
 ## Representor Pattern
 Hypermedia is about self-describing, runtime messages that _represent_ a _resource_ in a client-server system.
